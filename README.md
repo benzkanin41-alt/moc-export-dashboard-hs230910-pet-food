@@ -33,6 +33,7 @@ The dashboard includes monthly, quarterly, and yearly views; total, country, and
 - `data/validation_reconciliation.csv`: reconciliation output.
 - `scripts/fetch_moc_hs230910.py`: reproducible MOC fetch script.
 - `dashboard-smoke.png`, `dashboard-mobile-smoke.png`, `dashboard-mobile-full-smoke.png`: local QA screenshots.
+- `github-pages-online-smoke.png`: QA screenshot captured from the live GitHub Pages URL.
 
 ## Local Run
 
