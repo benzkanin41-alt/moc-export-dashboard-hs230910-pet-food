@@ -496,6 +496,19 @@
     `;
   }
 
+  function buildXAxisTickIndexes(pointCount, maxLabels = 8) {
+    if (pointCount <= maxLabels) {
+      return new Set(Array.from({ length: pointCount }, (_, index) => index));
+    }
+
+    const lastIndex = pointCount - 1;
+    return new Set(
+      Array.from({ length: maxLabels }, (_, slot) =>
+        Math.round((slot * lastIndex) / (maxLabels - 1)),
+      ),
+    );
+  }
+
   function renderLineChart(container, series, options) {
     const values = [];
     for (const one of series) {
@@ -535,7 +548,7 @@
     const x = (sort) => pad.left + (xMax === xMin ? plotW / 2 : ((sort - xMin) / (xMax - xMin)) * plotW);
     const y = (value) => pad.top + (1 - (value - yMin) / (yMax - yMin)) * plotH;
     const periodTicks = series[0].points;
-    const tickStep = Math.max(1, Math.ceil(periodTicks.length / 8));
+    const xTickIndexes = buildXAxisTickIndexes(periodTicks.length);
     const yTicks = Array.from({ length: 5 }, (_, index) => yMin + ((yMax - yMin) * index) / 4);
 
     const grid = yTicks
@@ -543,7 +556,7 @@
         <text x="${pad.left - 8}" y="${y(tick) + 4}" text-anchor="end">${options.percent ? nf0.format(tick) + "%" : formatCompact(tick)}</text>`)
       .join("");
     const xTicks = periodTicks
-      .filter((_, index) => index % tickStep === 0 || index === periodTicks.length - 1)
+      .filter((_, index) => xTickIndexes.has(index))
       .map((point) => `<text x="${x(point.periodSort)}" y="${height - 28}" text-anchor="middle">${escapeHtml(point.periodLabel)}</text>`)
       .join("");
     const zeroLine = options.percent && yMin < 0 && yMax > 0 ? `<line class="zero-line" x1="${pad.left}" x2="${width - pad.right}" y1="${y(0)}" y2="${y(0)}"></line>` : "";
