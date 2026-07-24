@@ -9,14 +9,14 @@ Static dashboard for Thailand export data from Thailand's Trade Statistic, Minis
 - HS source name: `230910 : อาหารสุนัขหรือแมว จัดทำขึ้นเพื่อการขายปลีก (เช่น ปลาบรรจุภาชนะอัดลม เป็นต้น)`
 - Source page: https://tradereport.moc.go.th/th/stat/reporthscodeexport01
 - API endpoint: https://tradereport.moc.go.th/stat/reporthscodeexport01/result
-- Coverage: `2021-01` to `2026-05`
-- Latest source month: `พ.ค. 2569`
+- Coverage: `2021-01` to `2026-06`
+- Latest source month: `มิ.ย. 2569`
 - Currency: THB
 
 ## Validation
 
-- Months fetched: `65`
-- Country-month rows: `5,134`
+- Months fetched: `66`
+- Country-month rows: `5,217`
 - Reconciliation max value diff: `0.0`
 - Reconciliation max quantity diff: `0.0`
 - Missing continent mappings: `0`
